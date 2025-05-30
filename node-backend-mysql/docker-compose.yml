@@ -6,25 +6,38 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:3000"
     depends_on:
       - db
     environment:
+      - PORT=3000 # Asegura que la app dentro del contenedor escuche en el puerto 3000
       - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=mydatabase
+      - DB_USER=root # O podrías definir un DB_APP_USER en .env si no usas root
+      - DB_PASSWORD=${DB_ROOT_PASSWORD} # O DB_USER_PASSWORD si tienes un usuario específico para la app
+      - DB_NAME=${DB_APP_DATABASE_NAME}
 
   db:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydatabase
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_APP_DATABASE_NAME}
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./mysql-init-scripts:/docker-entrypoint-initdb.d # Monta los scripts de inicialización
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8080:80" # Accede a phpMyAdmin en http://localhost:8080
+    environment:
+      PMA_HOST: db         # Nombre del servicio de tu base de datos MySQL
+      PMA_PORT: 3306       # Puerto de tu base de datos MySQL
+    depends_on:
+      - db
 
 volumes:
   db_data:

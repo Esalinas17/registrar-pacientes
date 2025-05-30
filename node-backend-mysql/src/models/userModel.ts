@@ -1,16 +1,4 @@
-export interface User {
-    name: string;
-    rut: string;
-    address: string;
-    medication: string;
-    dosage: string;
-    age: number;
-    contact: string;
-    healthFacility: string;
-    pathology: string;
-}
-
-import { Pool } from 'mysql2/promise';
+import { Pool, RowDataPacket } from 'mysql2/promise';
 import { User } from '../types/user';
 
 export class UserModel {
@@ -27,7 +15,11 @@ export class UserModel {
 
     async findUserByRUT(rut: string): Promise<User | null> {
         const query = `SELECT * FROM users WHERE rut = ?`;
-        const [rows] = await this.db.execute(query, [rut]);
-        return rows.length > 0 ? rows[0] : null;
+        // Especificamos que esperamos un array de RowDataPacket
+        const [rows] = await this.db.execute<RowDataPacket[]>(query, [rut]);
+        if (rows.length > 0) {
+            return rows[0] as User; // Hacemos un type assertion a User
+        }
+        return null;
     }
 }
