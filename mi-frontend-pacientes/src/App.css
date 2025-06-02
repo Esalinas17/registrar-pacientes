@@ -14,14 +14,24 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-image: url('https://www.proximamediagroup.com/wp-content/uploads/2023/05/Gestion-de-Inventario-Farmacia_2.jpg');
+  background-size: cover; /* Para que la imagen cubra todo el contenedor */
+  background-position: center center; /* Para centrar la imagen */
+  background-repeat: no-repeat; /* Para que la imagen no se repita */
+  min-height: 300px; /* Ajusta esta altura según tus necesidades, 100vh podría ser demasiado si solo es un encabezado */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejorar legibilidad del texto sobre la imagen */
+}
+
+.App-header h1 {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para el título para mejorar legibilidad */
+  padding: 10px 20px;
+  border-radius: 8px;
 }
 
 .App-link {

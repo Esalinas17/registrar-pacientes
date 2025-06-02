@@ -1,6 +1,7 @@
 // src/App.tsx
 import React from 'react';
 import PatientForm from './components/PatientForm';
+import PatientList from './components/PatientList'; // Import the new component
 import './App.css';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
       </header>
       <main>
         <PatientForm />
+        <hr className="section-divider" /> {/* Optional: a visual separator */}
+        <PatientList />
       </main>
     </div>
   );

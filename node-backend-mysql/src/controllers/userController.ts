@@ -45,4 +45,14 @@ export class UserController {
             res.status(500).json({ message: 'Error interno del servidor al buscar usuario.' });
         }
     }
+
+    async getAllUsers(req: Request, res: Response): Promise<void> {
+        try {
+            const users = await this.userModel.findAllUsers();
+            res.status(200).json(users);
+        } catch (error) {
+            console.error('Error al obtener todos los usuarios:', error);
+            res.status(500).json({ message: 'Error interno del servidor al obtener usuarios.' });
+        }
+    }
 }

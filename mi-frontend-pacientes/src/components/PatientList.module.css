@@ -1,0 +1,63 @@
+/* src/components/PatientList.module.css */
+.listContainer {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+}
+
+.listContainer h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.patientTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.patientTable th,
+.patientTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.patientTable th {
+    background-color: #e7e7e7;
+    color: #333;
+    font-weight: bold;
+}
+
+.patientTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.patientTable tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+.loadingMessage,
+.noPatientsMessage {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    padding: 20px;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.errorMessage {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

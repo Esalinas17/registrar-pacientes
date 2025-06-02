@@ -15,4 +15,7 @@ router.post('/users', userController.createUser.bind(userController));
 // Endpoint para buscar un usuario por RUT
 router.get('/users/:rut', userController.findUserByRUT.bind(userController));
 
+// Endpoint para obtener todos los usuarios
+router.get('/users', userController.getAllUsers.bind(userController));
+
 export default router;

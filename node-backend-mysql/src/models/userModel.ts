@@ -22,4 +22,11 @@ export class UserModel {
         }
         return null;
     }
+
+    async findAllUsers(): Promise<User[]> {
+        const query = `SELECT id, name, rut, address, medication, dosage, age, contact, healthFacility, pathology FROM users ORDER BY name ASC`; // Added id and other fields
+        // Especificamos que esperamos un array de RowDataPacket
+        const [rows] = await this.db.execute<RowDataPacket[]>(query);
+        return rows as User[]; // Hacemos un type assertion a User[]
+    }
 }
